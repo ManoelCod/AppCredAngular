@@ -1,0 +1,6 @@
+<h2>Lista de Créditos</h2>
+<ul>
+  <li *ngFor="let credito of creditos">
+    {{ credito.numero_credito }} - {{ credito.valor_faturado | currency:'BRL' }}
+  </li>
+</ul>
