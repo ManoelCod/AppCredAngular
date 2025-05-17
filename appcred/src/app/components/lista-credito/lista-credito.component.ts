@@ -11,25 +11,23 @@ import { ApicredService, Credito } from '../../services/apicred.service';
   imports: [CommonModule, FormsModule]
 })
 export class ListaCreditoComponent {
-  credito?: Credito;
-  creditos: Credito[] = []; 
-  filtroNfse: string = '';
-  filtroNumero: string = '';
+  filtroNfse = '';
+  filtroNumero = '';
+  creditos: Credito[] = [];
 
-  constructor(private apicredService: ApicredService) {}
+  constructor(private apiCredService: ApicredService) {}
 
-buscarPorNfse(): void {
-  if (this.filtroNfse) {
-    this.apicredService.getCreditosPorNfse(this.filtroNfse).subscribe(data => {
-      this.creditos = data ?? [];  // ✅ Agora armazenamos uma lista de créditos
+  buscarPorNfse() {
+    this.apiCredService.getCreditosPorNfse(this.filtroNfse).subscribe(dados => {
+      this.creditos = dados;
+      console.log('Dados recebidos:', dados); 
     });
   }
-}
 
-buscarPorNumeroCredito(): void {
+ buscarPorNumeroCredito(): void {
   if (this.filtroNumero) {
-    this.apicredService.getCreditosPorNumero(this.filtroNumero).subscribe(data => {
-      this.creditos = data ?? [];  // ✅ Garantindo que é uma lista de créditos
+    this.apiCredService.getCreditosPorNumero(this.filtroNumero).subscribe((dado: Credito) => {
+      this.creditos = dado ? [dado] : [];
     });
   }
 }

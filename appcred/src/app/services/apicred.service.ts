@@ -28,7 +28,7 @@ export class ApicredService {
     return this.http.get<Credito[]>(`${this.baseUrl}/${numeroNfse}`);
   }
 
-  getCreditosPorNumero(numeroCredito: string): Observable<Credito[]> {
-    return this.http.get<Credito[]>(`${this.baseUrl}/credito/${numeroCredito}`);
+  getCreditosPorNumero(numeroCredito: string): Observable<Credito> {
+    return this.http.get<Credito>(`${this.baseUrl}/credito/${numeroCredito}`);
   }
 }

@@ -8,53 +8,39 @@
 <input type="text" [(ngModel)]="filtroNumero">
 <button (click)="buscarPorNumeroCredito()">Buscar</button>
 
-<h3>Detalhes do Crédito</h3>
+<h3>Lista de Créditos</h3>
 
-<table *ngIf="credito">
-  <tr>
-    <th>ID</th>
-    <td>{{ credito.id }}</td>
-  </tr>
-  <tr>
-    <th>Número Crédito</th>
-    <td>{{ credito.numeroCredito }}</td>
-  </tr>
-  <tr>
-    <th>Número NFS-e</th>
-    <td>{{ credito.numeroNfse }}</td>
-  </tr>
-  <tr>
-    <th>Data Constituição</th>
-    <td>{{ credito.dataConstituicao }}</td>
-  </tr>
-  <tr>
-    <th>Valor ISSQN</th>
-    <td>{{ credito.valorIssqn | currency:'BRL' }}</td>
-  </tr>
-  <tr>
-    <th>Tipo Crédito</th>
-    <td>{{ credito.tipoCredito }}</td>
-  </tr>
-  <tr>
-    <th>Simples Nacional</th>
-    <td>{{ credito.simplesNacional ? 'Sim' : 'Não' }}</td>
-  </tr>
-  <tr>
-    <th>Alíquota</th>
-    <td>{{ credito.aliquota }}%</td>
-  </tr>
-  <tr>
-    <th>Valor Faturado</th>
-    <td>{{ credito.valorFaturado | currency:'BRL' }}</td>
-  </tr>
-  <tr>
-    <th>Valor Dedução</th>
-    <td>{{ credito.valorDeducao | currency:'BRL' }}</td>
-  </tr>
-  <tr>
-    <th>Base de Cálculo</th>
-    <td>{{ credito.baseCalculo | currency:'BRL' }}</td>
-  </tr>
+<table *ngIf="creditos.length > 0">
+  <thead>
+    <tr>
+      <th>ID</th>
+      <th>Número Crédito</th>
+      <th>Número NFS-e</th>
+      <th>Data Constituição</th>
+      <th>Valor ISSQN</th>
+      <th>Tipo Crédito</th>
+      <th>Simples Nacional</th>
+      <th>Alíquota</th>
+      <th>Valor Faturado</th>
+      <th>Valor Dedução</th>
+      <th>Base de Cálculo</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let credito of creditos"> 
+      <td>{{ credito.id }}</td>
+      <td>{{ credito.numeroCredito }}</td>
+      <td>{{ credito.numeroNfse }}</td>
+      <td>{{ credito.dataConstituicao }}</td>
+      <td>{{ credito.valorIssqn | currency:'BRL' }}</td>
+      <td>{{ credito.tipoCredito }}</td>
+      <td>{{ credito.simplesNacional ? 'Sim' : 'Não' }}</td>
+      <td>{{ credito.aliquota }}%</td>
+      <td>{{ credito.valorFaturado | currency:'BRL' }}</td>
+      <td>{{ credito.valorDeducao | currency:'BRL' }}</td>
+      <td>{{ credito.baseCalculo | currency:'BRL' }}</td>
+    </tr>
+  </tbody>
 </table>
 
-<p *ngIf="!credito">Nenhum crédito encontrado.</p>
+<p *ngIf="creditos.length === 0">Nenhum crédito encontrado.</p>
