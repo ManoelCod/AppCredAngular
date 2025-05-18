@@ -1,0 +1,11 @@
+version: '3.8'
+
+services:
+  appcred-angular:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "4200:80"
+    container_name: appcred-angular
+    restart: unless-stopped
